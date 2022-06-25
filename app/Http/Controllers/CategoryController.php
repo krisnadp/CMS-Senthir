@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -24,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -35,7 +37,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category;
+        $category->name = $request->name;
+        $category->save();
+        return redirect( route('home') );
     }
 
     /**
@@ -46,7 +51,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $category = Category::all();
+        return view('category/edit', ['category' => $category]);
     }
 
     /**
@@ -57,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category/detail', ['category' => $category]);
     }
 
     /**
@@ -69,7 +75,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        Category::where('id', $category->id)
+            ->update([
+        'name' => $request->name
+        ]);
+        $category->update($request->all());
+        return redirect( route('home') );
     }
 
     /**
@@ -80,6 +91,11 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category = Category::where('id', $category->id)->first();
+        if($category) {
+            $category->delete();
+        }
+        return redirect( route('home') );
     }
+
 }

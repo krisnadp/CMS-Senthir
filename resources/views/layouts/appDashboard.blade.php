@@ -56,37 +56,33 @@
                 Content
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Category Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
+                    aria-expanded="true" aria-controls="collapseCategory">
                     <i class="fas fa-fw fa-list"></i>
-                    <span>Article</span>
+                    <span>Category</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseCategory" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('article.create') }}"><i class="fas fa-fw fa-plus me-2"></i>Create Article</a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-pen me-2"></i>Update Article</a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-fw fa-trash me-2"></i>Delete Article</a>
+                        <a class="collapse-item" href="{{ route('category.create') }}"><i class="fas fa-fw fa-plus me-2"></i>Create Category</a>
+                        <a class="collapse-item" href="{{ route('category.show') }}"><i class="fas fa-fw fa-pen me-2"></i>Edit Category</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Article Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticle"
+                    aria-expanded="true" aria-controls="collapseArticle">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Article</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="collapseArticle" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" href="{{ route('article.create') }}"><i class="fas fa-fw fa-plus me-2"></i>Create Article</a>
+                        <a class="collapse-item" href="{{ route('article.show') }}"><i class="fas fa-fw fa-pen me-2"></i>Edit Article</a>
                     </div>
                 </div>
             </li>

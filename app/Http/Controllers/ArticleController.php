@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -22,9 +24,10 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        return view('article.create');
+        $category = Category::all();
+        return view('article.create', ['category' => $category]);
     }
 
     /**
@@ -35,7 +38,12 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = new Article;
+        $article->category_id = $request->category_id;
+        $article->title = $request->title;
+        $article->detail = $request->detail;
+        $article->save();
+        return redirect( route('home') );
     }
 
     /**
@@ -44,9 +52,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Article $article, Category $category)
     {
-        //
+        $category = Category::all();
+        $article = Article::all();
+        return view('article/edit', ['category' => $category], ['article' => $article]);
     }
 
     /**
@@ -57,7 +67,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        $category = Category::all();
+        return view('article/detail', ['article' => $article], ['category' => $category]);
     }
 
     /**
@@ -69,7 +80,14 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        Article::where('id', $article->id)
+            ->update([
+        'title' => $request->title,
+        'category_id' => $request->category_id,
+        'detail' => $request->detail
+        ]);
+        $article->update($request->all());
+        return redirect( route('home') );
     }
 
     /**
@@ -80,6 +98,10 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article = Article::where('id', $article->id)->first();
+        if($article) {
+            $article->delete();
+        }
+        return redirect( route('home') );
     }
 }
