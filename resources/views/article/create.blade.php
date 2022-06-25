@@ -13,7 +13,8 @@
 
             <div class="mb-3">
                 <label for="titleInput" class="form-label">Title</label>
-                <input type="text" class="form-control" id="titleInput" name="title" placeholder="Example: New Phone from Xiaomy" required>
+                <input type="text" class="form-control" id="titleInput" name="title"
+                    placeholder="Example: New Phone from Xiaomy" required>
             </div>
             <div class="mb-3">
                 <label for="categoryInput" class="form-label">Category</label>
@@ -22,14 +23,36 @@
                     @foreach ($category as $categories)
                         <option value="{{ $categories->id }}">{{ $categories->name }}</option>
                     @endforeach
-                  </select>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="detailInput" class="form-label">Detail Article</label>
                 <textarea class="form-control" id="detailInput" rows="3" name="detail" required></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Add Article</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add Article
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add Article</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure want to add this Article?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Article</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </form>
 
