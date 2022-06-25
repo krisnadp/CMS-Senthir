@@ -16,11 +16,12 @@ use App\Http\Controller\CategoryController;
 |
 */
 
-// Welcome route
-Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 
 // Auth Route
 Auth::routes();
+
+// Welcome route
+Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
 
 // Detail Route
 Route::get('/detail/{article}', [App\Http\Controllers\HomeController::class, 'detail'])->name('detail');
